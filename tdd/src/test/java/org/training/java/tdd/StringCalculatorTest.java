@@ -1,8 +1,12 @@
 package org.training.java.tdd;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+
+import static org.hamcrest.Matchers.*;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 public class StringCalculatorTest {
 
@@ -17,13 +21,16 @@ public class StringCalculatorTest {
 	public void shouldReturnCeroOnEmpty() {
 		
 		assertEquals("No input numbers", 0, stringCalculator.add(""));
+		assertThat("No input numbers", stringCalculator.add(""), equalTo(0));
+		
 	}
 	
 	@Test
 	public void shouldReturnSameNumber() {
 		
 		assertEquals(1, stringCalculator.add("1"));
-		assertEquals(0, stringCalculator.add("0"));
+		assertThat("One number 0", stringCalculator.add("0"), equalTo(0));
+
 	}
 
 	@Test
