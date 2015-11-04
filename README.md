@@ -35,6 +35,14 @@ TODO:
 	a. To change delimiter, we use "//[delimiter]\n[numbers]". For example: "//;\n1;2" should return 3
 	b. This is optional, the older format cases are still valid
 
+7. Do we have good tests?
+
+	a. Break on purpose the StringSplitter implementation. 
+	b. Run all tests. Then:
+			* StringCalculator tests should pass
+			* StringSplitter tests should fail
+
+
 # More info & related
 
 ## Testing with Spock
