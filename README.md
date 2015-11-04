@@ -19,7 +19,16 @@ Testing Java app using JUNIT
 
 3. Change the test to use Hamcrest matchers.
 
+4. Does StringCalculator comply with the unique responsibilty principle ?
+		Split StringCalculator and StringSplitter
 
+5. Allow the method add to use new lines as separator.
+
+	a. "1\n2,3" should return 6
+	b. "1,\n" is not a valid string ??
+
+
+	
 # More info & related
 
 ## Testing with Spock

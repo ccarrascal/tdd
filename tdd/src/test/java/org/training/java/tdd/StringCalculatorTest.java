@@ -1,49 +1,72 @@
 package org.training.java.tdd;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class StringCalculatorTest {
 
-	private StringCalculator stringCalculator;
+	private StringCalculator stringCalculatorSUT;
+	private StringSplitter mockSplitter;
+	
 	
 	@Before
 	public void createStringCalculator() {
-		stringCalculator = new StringCalculator();
+		mockSplitter = mock(StringSplitter.class);
+		stringCalculatorSUT = new StringCalculator(mockSplitter);
 	}
 	
 	@Test
 	public void shouldReturnCeroOnEmpty() {
 		
-		assertEquals("No input numbers", 0, stringCalculator.add(""));
-		assertThat("No input numbers", stringCalculator.add(""), equalTo(0));
+		when(mockSplitter.split(anyString())).thenReturn(new int[0]);
+		assertThat("No input numbers", stringCalculatorSUT.add(""), equalTo(0));
 		
 	}
 	
 	@Test
 	public void shouldReturnSameNumber() {
+		int[] expected = { 1 };	
+		String input = "1";
 		
-		assertEquals(1, stringCalculator.add("1"));
-		assertThat("One number 0", stringCalculator.add("0"), equalTo(0));
+		when(mockSplitter.split(input)).thenReturn(expected);
+		assertThat("Same number 1", stringCalculatorSUT.add(input), equalTo(1));
 
 	}
 
 	@Test
 	public void shouldAddTwoNumbers() {
-		
-		assertEquals(0, stringCalculator.add("0,0"));
-		assertEquals(2, stringCalculator.add("1,1"));
+		int[] expected = { 1,2 };	
+		String input = "1,2";
+
+		when(mockSplitter.split(input)).thenReturn(expected);
+		assertThat("Adds numbers 1+2", stringCalculatorSUT.add(input), equalTo(3));
 	}
 
 	@Test
+	public void shouldAddTwoNumbersWithNewLineDelimiter() {
+		int[] expected = { 1,2 };	
+		String input = "1\n2";
+
+		when(mockSplitter.split(input)).thenReturn(expected);
+		assertThat("Adds numbers 1+2", stringCalculatorSUT.add(input), equalTo(3));
+	}	
+	
+	
+	@Test
 	public void shouldAddMoreThanTwoNumbers() {
-		
-		assertEquals(60, stringCalculator.add("10,20,30"));
-		assertEquals(80, stringCalculator.add("10,20,30,5,15"));
+		int[] expected = { 1,2,3 };	
+		String input = "1,2,3";
+
+		when(mockSplitter.split(input)).thenReturn(expected);
+		assertThat("Adds numbers 1+2+3", stringCalculatorSUT.add(input), equalTo(6));
 	}
+	
+
+	
 }
