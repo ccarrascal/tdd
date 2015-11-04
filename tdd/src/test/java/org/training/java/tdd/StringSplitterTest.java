@@ -40,7 +40,7 @@ public class StringSplitterTest {
 	
 
 	@Test
-	public void shouldReturnArrayOnNumberInputandSeparatorNewLine() {
+	public void shouldReturnArrayOnNumberInputAndSeparatorNewLine() {
 		int[] expected = { 1, 2 ,3};		
 		assertThat("three numbers with new line", 
 					stringSplitter.split("1\n2,3"), equalTo(expected));
@@ -48,6 +48,16 @@ public class StringSplitterTest {
 		int[] expected2 = { 1 };		
 		assertThat("one number various delimiters", 
 					stringSplitter.split("1\n,"), equalTo(expected2));
+	}
+
+	@Test
+	public void shouldReturnArrayOnNumberInputAndCustomSeparator() {
+		int[] expected = { 1, 2 };		
+		String input = "//;\n1;2";
+		
+		assertThat("three numbers with custom delimiter ;", 
+					stringSplitter.split(input), equalTo(expected));
+
 	}
 
 	

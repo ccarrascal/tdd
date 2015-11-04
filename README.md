@@ -28,12 +28,13 @@ Testing Java app using JUNIT
 	b. "1,\n" is not a valid string ??
 
 
-TODO:
-
 6. Allow custom list separators
 
 	a. To change delimiter, we use "//[delimiter]\n[numbers]". For example: "//;\n1;2" should return 3
 	b. This is optional, the older format cases are still valid
+
+
+TODO:
 
 7. Do we have good tests?
 

@@ -57,6 +57,15 @@ public class StringCalculatorTest {
 		assertThat("Adds numbers 1+2", stringCalculatorSUT.add(input), equalTo(3));
 	}	
 	
+	@Test
+	public void shouldAddTwoNumbersWithCustomDelimiter() {
+		int[] expected = { 1,2 };	
+		String input = "//;\n1;2";
+
+		when(mockSplitter.split(input)).thenReturn(expected);
+		assertThat("Adds numbers 1+2", stringCalculatorSUT.add(input), equalTo(3));
+	}	
+
 	
 	@Test
 	public void shouldAddMoreThanTwoNumbers() {
