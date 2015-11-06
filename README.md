@@ -34,8 +34,6 @@ Testing Java app using JUNIT
 	b. This is optional, the older format cases are still valid
 
 
-TODO:
-
 7. Do we have good tests?
 
 	a. Break on purpose the StringSplitter implementation. 

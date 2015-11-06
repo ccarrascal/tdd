@@ -21,7 +21,7 @@ public class BasicStringSplitter implements StringSplitter {
 			x++;			
 		}
 		
-		return result;
+		return null; //result;
 	}
 	
 	private String getDelimiter(StringBuilder inputString) {
